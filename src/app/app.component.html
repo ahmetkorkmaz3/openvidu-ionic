@@ -1,0 +1,99 @@
+<ion-app>
+  <ion-content padding *ngIf="!session">
+
+    <div id="img-div"><img src="assets/images/openvidu_grey_bg_transp_cropped.png" /></div>
+    <h1 align="center" id="title">Join a video session</h1>
+    <ion-item>
+      <ion-label position="floating">Kullanıcı Adı</ion-label>
+      <ion-input [(ngModel)]="myUserName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Session</ion-label>
+      <ion-input [(ngModel)]="mySessionId"></ion-input>
+    </ion-item>
+
+    <ion-button id="join-button" [disabled]="!mySessionId && !myUserName" (click)="joinSession()" expand="block"
+      shape="round" color="primary">
+      <ion-icon slot="start" name="videocam"></ion-icon>
+      Join
+    </ion-button>
+
+    <ion-button id="join-button" [disabled]="!mySessionId && !myUserName" (click)="joinSubscriber()" expand="block"
+      shape="round" color="primary">
+      <ion-icon slot="start" name="videocam"></ion-icon>
+      Join as Subscriber
+    </ion-button>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button id="settings-button" [disabled]="!mySessionId && !myUserName" (click)="presentSettingsAlert()"
+        size="small" color="dark">
+        <ion-icon name="settings"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </ion-content>
+
+  <ion-content [scrollEvents]="true" (ionScroll)="refreshVideos()" *ngIf="session">
+    <ion-grid>
+      <!--Subscribers and Publishers-->
+      <ion-row>
+
+        <div *ngIf="publisher" class="stream-container">
+          <user-video class="video" [streamManager]="publisher"></user-video>
+        </div>
+
+        <div *ngFor="let sub of subscribers" class="stream-container">
+          <user-video class="video" [streamManager]="sub"></user-video>
+        </div>
+      </ion-row>
+    <ion-row style="margin-top: 20px;" horizontal="end">  
+      <div class="message-col">
+          <div id="chat" class="msgcardbg"><div class="message-card">
+              <div id="jsub" *ngFor="let data of messageList" class="msg-info">
+                <ion-card class="message"> {{data}} </ion-card>
+              </div>
+          </div></div>
+          <ion-row horizontal="end">
+            <ion-col  size="10">
+              <ion-item class="message-input" >
+                <ion-label style="background-color: rgba(173, 168, 168, 0.8);" position="floating"></ion-label>
+                <ion-input style="border-radius:5px; background-color: rgba(255, 255, 255, 0.3);" [(ngModel)]="myMessage"></ion-input>
+              </ion-item>
+            </ion-col>
+           <ion-col size="1.8" vertical="bottom" horizontal="end">
+              <ion-button color="success" (click)="sendMessage()">
+                <ion-icon name="send"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+
+
+      </ion-row>
+    </ion-grid>
+    <ion-fab class="offbuton"  vertical="top"  slot="fixed">
+      <ion-fab-button size="small" color="danger" (click)="leaveSession()">
+        <ion-icon name="power"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <div *ngIf="publisher" >
+    <div class="buton">
+      <ion-fab  slot="fixed">
+        <ion-fab-button size="small" color="medium" (click)="videoshow()">
+          <ion-icon name="videocam"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+    <br>
+    <div class="buton" >
+      <ion-fab slot="fixed">
+        <ion-fab-button size="small" color="medium" (click)="audioshow()">
+          <ion-icon name="mic-off"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+    </div>
+  </ion-content>
+
+</ion-app>

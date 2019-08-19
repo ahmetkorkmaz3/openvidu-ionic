@@ -1,0 +1,82 @@
+.demo-logo {
+  height: 26px;
+  padding-left: 5px;
+}
+
+#img-div {
+  max-width: 60%;
+  margin: 10px auto;
+}
+#title {
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+
+#join-button {
+  margin-top: 20px;
+}
+
+#session-header {
+  text-align: center;
+}
+
+ion-col {
+  padding: 1px;
+  text-align: center;  
+}
+
+.video{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.message-col{
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  width: 100%!important;
+}
+
+.message {
+  background-color: rgba(173, 168, 168, 0.8);
+  color: black;
+  opacity: 0.8;
+  border-radius: 3px;
+  padding: 10px ;
+}
+
+.message-card {
+  height: 50%;
+}
+
+user-video {
+  height: 100vh;
+}
+.msgcardbg{
+  background-color: transparent;
+  height: 50vh;
+  width: 100%;
+  border: 0px;
+  vertical-align: top;
+  overflow: scroll;
+  padding-bottom: 40px;
+}
+.message-input {
+  height: 40px;
+  width: 100% !important;
+  --inner-padding-end: 0px;
+  --padding-start:0px;
+}
+.msg-info{
+  width: fit-content;
+}
+.offbuton{
+  padding-left: 85%;
+}
+.buton{
+  padding-top: 5vh;
+  padding-left: 85%;
+}
